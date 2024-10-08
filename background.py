@@ -1,29 +1,21 @@
 import numpy as np
 import cv2
-import matplotlib.pyplot as plt
-from rembg import remove
-from PIL import Image
-
-# Variáveis das fotos
-img_path = 'cel.tif'  # Caminho da sua imagem
-img_output = 'processed_image.tif'  # Caminho para a imagem de saída
-
-input_image = Image.open(img_path)
-output_image = remove(input_image)
-output_image.save(img_output)
 
 # Carregar a imagem processada sem fundo
-imagem = cv2.imread(img_output)
+imagem = cv2.imread('out.tif')
 
 # Converter a imagem para o espaço de cor HSV
 hsv_image = cv2.cvtColor(imagem, cv2.COLOR_BGR2HSV)
 
 # Ajustar limites para a cor
-lower = np.array([15, 20, 20])  # Limite inferior ajustado
-upper = np.array([30, 255, 255])  # Limite superior ajustado
+lower_brown = np.array([15, 20, 20])  # Limite inferior ajustado
+upper_brown = np.array([30, 255, 255])  # Limite superior ajustado
+
+lower_blue = np.array([(170, 30, 30)])
+upper_blue = np.array([220, 255, 255])
 
 # Criar a máscara para os biomarcadores marrons
-mask = cv2.inRange(hsv_image, lower, upper)
+mask = cv2.inRange(hsv_image, lower_blue, upper_blue)
 img = cv2.bitwise_and(hsv_image, hsv_image, mask=mask)
 
 height, width = img.shape[:2]
@@ -44,6 +36,7 @@ if height > max_height or width > max_width:
 else:
     mask_resized = mask
 
+
 # Encontrar contornos na máscara redimensionada
 contours, _ = cv2.findContours(mask_resized, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
@@ -51,6 +44,7 @@ contours, _ = cv2.findContours(mask_resized, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX
 num_points = len(contours)
 
 print(f'Número de pontos marrons encontrados: {num_points}')
+#print(f'Número de pontos azuis encontrados: {num_points_blue}')
 
 # Mostrar a máscara redimensionada
 cv2.imshow('Máscara Redimensionada', mask_resized)
