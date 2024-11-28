@@ -7,10 +7,6 @@ def calc_area(image_output):
 
     gray2 = cv.cvtColor(im, cv.COLOR_BGR2GRAY)
 
-    # Aplica o desfoque
-    #print('Desfoque...')
-    blur = cv.blur(gray2, (15, 15))
-
     # Aplica o threshold (limite)
     # print('Limite...')
     ret, thresh_otsu = cv.threshold(gray2, 0, 255, cv.THRESH_BINARY + cv.THRESH_OTSU)

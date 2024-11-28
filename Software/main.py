@@ -3,6 +3,7 @@ import pandas as pd
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter.ttk import Progressbar
+
 import area
 import contagem
 import tirarfundo
@@ -70,13 +71,14 @@ def iniciar_processamento():
         # Exemplo de chamadas às funções do programa
         pixel_count = area.calc_area(caminho)
         azul, marrom = contagem.n_pontos(caminho, salvar_fotos, nfotos)
-
+        pmarrom = (marrom/azul) * 100
         dados.append({
             "Index": index,
             "Nome do Arquivo": file,
             "Área": pixel_count,
             "Biomarcadores Azuis": azul,
-            "Biomarcadores Marrons": marrom
+            "Biomarcadores Marrons": marrom,
+            "%Marrom": f'{pmarrom:.2f}%'
         })
 
         # Atualizar progresso

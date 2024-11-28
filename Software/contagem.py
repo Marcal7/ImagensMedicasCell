@@ -36,13 +36,12 @@ def contagem(image, lred, lgreen, lblue, ured, ugreen, ublue, canny_low, canny_u
             if 0.2 <= circularity <= 1.5 and 10 <= area <= 200:
                 circulo.append(contour)
 
-    img_filtrada = cv2.drawContours(np.copy(rgb_image), circulo, -1, (0, 255, 0), 1)  # Contornos em verde
-
     # Contar o número de contornos (pontos distintos)
     #num_points = len(contours)
     num_contornos = len(circulo)
 
     if sfotos is True:
+        img_filtrada = cv2.drawContours(np.copy(rgb_image), circulo, -1, (0, 255, 0), 1)  # Contornos em verde
         cv2.imwrite(f'pontos{tipo}_filtrados{index}.png', img_filtrada)
 
     return num_contornos
