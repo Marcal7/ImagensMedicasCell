@@ -84,8 +84,6 @@ Lógica implementada com:
 ## 📊 **Resultados Obtidos**  
 O software é eficiente e rápido, processando imagens em média em **2:49 minutos** por conjunto.  
 
-![Resultados](https://via.placeholder.com/600x200.png?text=Resultados+Gráficos)  
-
 ---
 
 ## 📚 **Referências**  
