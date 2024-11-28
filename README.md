@@ -8,8 +8,6 @@
 ## 📋 **Resumo**  
 Este projeto propõe uma solução automatizada para substituir a análise manual da proteína **PIMREG** em cortes histológicos, utilizando Python e técnicas de processamento de imagens. O software identifica e conta os biomarcadores de interesse com alta eficiência, utilizando bibliotecas como **OpenCV**, **NumPy**, **Pandas** e **Tkinter**.  
 
-![Exemplo](https://via.placeholder.com/600x200.png?text=Imagem+de+exemplo+do+projeto)  
-
 ### 🚀 **Resultados:**
 - **Taxa de acertos:**  
   - 🟦 Núcleos azuis: **70,59%**  
